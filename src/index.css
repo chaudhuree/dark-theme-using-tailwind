@@ -1,3 +1,165 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Define the default blob size */
+.blob {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(
+    281deg,
+    #ef4765 80.49%,
+    rgba(239, 71, 232, 0) 112.28%
+  );
+  animation: blink 2s infinite alternate ease-in-out,
+    move 4s infinite alternate ease-in-out;
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.blob2 {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(
+    281deg,
+    #4764e9 80.49%,
+    rgba(71, 32, 239, 0) 112.28%,
+    #ef47e8 80.49%,
+    rgba(239, 71, 232, 0) 112.28%
+  );
+  animation: blink 2s infinite alternate ease-in-out,
+    move 4s infinite alternate ease-in-out;
+  position: absolute;
+  /* bottom:-10px;
+  right:10px; */
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes move {
+  0% {
+    --x: 0;
+    --y: 0;
+  }
+  25% {
+    --x: 100vw;
+    --y: 0;
+  }
+  50% {
+    --x: 50vw;
+    --y: 50vh;
+  }
+  75% {
+    --x: 0;
+    --y: 100vh;
+  }
+  100% {
+    --x: 50vw;
+    --y: 50vh;
+  }
+}
+
+/* Media queries for responsiveness */
+
+/* For max-width: 768px */
+@media (max-width: 768px) {
+  .blob {
+    width: 150px;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    animation: blink-small 2s infinite alternate ease-in-out,
+      move-small 4s infinite alternate ease-in-out;
+    transform: translate(-50%, -50%);
+  }
+
+  .blob2 {
+    width: 150px;
+    height: 150px;
+    left: 30%;
+    top: 30%;
+    animation: blink-small 2s infinite alternate ease-in-out,
+      move-small 4s infinite alternate ease-in-out;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Define keyframes for small devices (max-width: 768px) */
+  @keyframes blink-small {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes move-small {
+    0% {
+      --x: 0;
+      --y: 0;
+    }
+    25% {
+      --x: 100vw;
+      --y: 0;
+    }
+    50% {
+      --x: 50vw;
+      --y: 50vh;
+    }
+    75% {
+      --x: 0;
+      --y: 100vh;
+    }
+    100% {
+      --x: 50vw;
+      --y: 50vh;
+    }
+  }
+}
+
+/* For max-width: 480px */
+@media (max-width: 480px) {
+  .blob {
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    animation: blink-extra-small 2s infinite alternate ease-in-out;
+    transform: translate(-50%, -50%);
+  }
+
+  .blob2 {
+    width: 100px;
+    height: 100px;
+    left: 30%;
+    top: 30%;
+    animation: blink-extra-small 2s infinite alternate ease-in-out;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Define keyframes for extra small devices (max-width: 480px) */
+  @keyframes blink-extra-small {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}

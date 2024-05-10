@@ -1,9 +1,43 @@
-
+import { useRef, useEffect } from "react";
+import { randomBlob } from "./hooks/randomBlob";
 function App() {
-  
+  const blobRef = useRef(null);
+
+  useEffect(() => {
+    const blob = blobRef.current;
+    const handleResize = () => {
+      randomBlob(blobRef);
+    };
+
+    // Randomize the initial position
+    randomBlob(blobRef);
+
+    window.addEventListener("resize", handleResize);
+
+    const intervalId = setInterval(() => {
+      randomBlob(blobRef);
+    }, 4000);
+
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <section className="p-6 dark:text-gray-100 dark:bg-blue-gray-900 duration-100">
+    <section className="p-6 dark:text-gray-100 dark:bg-blue-gray-900 duration-100 min-h-screen w-full">
+      {/* Blurry background */}
+      <div
+        ref={blobRef}
+        className="blob overflow-x-hidden"
+        style={{ filter: "blur(80px)" }}
+      ></div>
      
+      <div
+      ref={blobRef}
+      className="blob2 overflow-x-hidden -bottom-20 left-[50%]"
+      style={{ filter: "blur(80px)" }}
+    ></div>
+ {/* Blurry background ends */}
       <div className="container mx-auto">
         <h1 className="text-4xl font-extrabold text-center pt-12">
           Dark Theme Toggler with Pure Tailwind css
@@ -73,6 +107,7 @@ function App() {
             architecto nihil. Reiciendis dolor voluptatum deleniti vitae cumque
             repellat accusantium beatae, ipsam maiores tenetur!
           </p>
+          
         </div>
       </div>
     </section>
